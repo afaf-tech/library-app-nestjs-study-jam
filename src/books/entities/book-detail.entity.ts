@@ -7,24 +7,18 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { BookDetailEntity } from './book-detail.entity';
+import { BookEntity } from './book.entity';
 
-@Entity({ name: 'books' })
-export class BookEntity {
+@Entity({ name: 'book_details' })
+export class BookDetailEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  title: string;
+  quantity: string;
 
   @Column()
-  author: string;
-
-  @Column()
-  publisher: string;
-
-  @Column({ length: 1000 })
-  description: string;
+  price: string;
 
   @CreateDateColumn({
     type: 'timestamp',
@@ -39,7 +33,7 @@ export class BookEntity {
   })
   public updated_at: Date;
 
-  @OneToOne(() => BookDetailEntity)
+  @OneToOne(() => BookEntity)
   @JoinColumn()
-  book: BookDetailEntity;
+  profile: BookEntity;
 }
