@@ -25,7 +25,6 @@ import { ResponseInterceptor } from './common/interceptors/response.interceptor'
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
         const options = configService.get('database');
-        console.log(options);
 
         return options;
       },

@@ -43,9 +43,6 @@ export class BooksService {
   }
 
   createBook(bookData: BookDto): Promise<BookEntity> {
-    console.log(bookData);
-    throw new Error('wait');
-
     const bookEntity = this.bookRepository.create(bookData);
     return this.bookRepository.save(bookEntity);
   }
