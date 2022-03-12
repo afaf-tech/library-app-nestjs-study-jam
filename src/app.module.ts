@@ -14,6 +14,7 @@ import { APP_FILTER, APP_INTERCEPTOR, APP_PIPE } from '@nestjs/core';
 import { ValidationPipe } from './common/pipes/validation.pipe';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -32,6 +33,7 @@ import { ResponseInterceptor } from './common/interceptors/response.interceptor'
     }),
     BooksModule,
     BookLoansModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [

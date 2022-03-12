@@ -10,7 +10,7 @@ module.exports = {
   password: databaseConfig().password,
   database: databaseConfig().database,
   syncronize: false,
-  entities: [BookEntity, BookDetailEntity],
+  entities: databaseConfig().entities,
   migrations: ['src/databases/migrations/*.ts'],
   cli: {
     migrationsDir: 'src/databases/migrations',
