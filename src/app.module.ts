@@ -15,6 +15,7 @@ import { ValidationPipe } from './common/pipes/validation.pipe';
 import { LoggingInterceptor } from './common/interceptors/logging.interceptor';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -34,6 +35,7 @@ import { UsersModule } from './users/users.module';
     BooksModule,
     BookLoansModule,
     UsersModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [
