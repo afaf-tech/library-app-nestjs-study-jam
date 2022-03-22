@@ -24,7 +24,8 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) A Project to support learning process of Study Jam NestJS Nest Academy.
+This project is divided into several types based on the learning framework per week. Happy learning guys!!
 
 ## Installation
 
