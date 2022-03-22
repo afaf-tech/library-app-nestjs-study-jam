@@ -19,13 +19,14 @@ export class BookDto {
   publisher: string;
   @IsNotEmpty()
   qty: number;
+
   @IsNotEmpty()
   @Expose({ name: 'year_of_publication' })
   yearOfPublication: number;
 
-  @Expose({ name: 'book_detail' })
-  @ValidateNested()
-  @IsNotEmpty()
-  @Type(() => BookDetailDto)
-  bookDetail: BookDetailDto;
+  // @Expose({ name: 'book_detail' })
+  // @ValidateNested()
+  // @IsNotEmpty()
+  // @Type(() => BookDetailDto)
+  // bookDetail: BookDetailDto;
 }

@@ -1,5 +1,5 @@
 import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { BooksModule } from './books/books.module';
@@ -17,17 +17,27 @@ import { ResponseInterceptor } from './common/interceptors/response.interceptor'
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { ConnectionOptions } from 'typeorm';
+import databaseTestingConfig from './common/config/database-testing.config';
+import { CustomValidationPipe } from './common/pipes/validation-input.pipe';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [configuration, databaseConfig],
+      load: [configuration, databaseConfig, databaseTestingConfig],
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
-        const options = configService.get('database');
+        let options: ConnectionOptions;
+        const nodeEnv = process.env.NODE_ENV;
+
+        if (nodeEnv == 'testing') {
+          options = configService.get<ConnectionOptions>('databaseTesting');
+        } else {
+          options = configService.get<ConnectionOptions>('database');
+        }
 
         return options;
       },
@@ -47,7 +57,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     },
     {
       provide: APP_PIPE,
-      useClass: ValidationPipe,
+      useClass: CustomValidationPipe,
     },
     {
       provide: APP_INTERCEPTOR,
