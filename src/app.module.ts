@@ -19,6 +19,7 @@ import { AuthModule } from './auth/auth.module';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { ConnectionOptions } from 'typeorm';
 import databaseTestingConfig from './common/config/database-testing.config';
+import { CustomValidationPipe } from './common/pipes/validation-input.pipe';
 
 @Module({
   imports: [
@@ -56,7 +57,7 @@ import databaseTestingConfig from './common/config/database-testing.config';
     },
     {
       provide: APP_PIPE,
-      useClass: ValidationPipe,
+      useClass: CustomValidationPipe,
     },
     {
       provide: APP_INTERCEPTOR,
