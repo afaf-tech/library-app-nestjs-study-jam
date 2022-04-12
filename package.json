@@ -24,7 +24,8 @@
     "migration:create": "npm run typeorm:cli -- migration:create -n",
     "migration:run": "npm run typeorm:cli -- migration:run",
     "migration:revert": "npm run typeorm:cli -- migration:revert",
-    "seed": "ts-node -r tsconfig-paths/register ./src/databases/seeds/seed.ts"
+    "seed": "ts-node -r tsconfig-paths/register ./src/databases/seeds/seed.ts",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -62,6 +63,7 @@
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
     "jest": "^27.2.5",
     "prettier": "^2.3.2",
     "source-map-support": "^0.5.20",
