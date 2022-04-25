@@ -13,7 +13,7 @@ export class BookLoansService {
       // Your Operation : START
 
       // await queryRunner.manager.save(entity); operation1
-    //   await queryRunner.manager.save(entity); operation2
+      //   await queryRunner.manager.save(entity); operation2
 
       // Your Operation : END
       await queryRunner.commitTransaction();
