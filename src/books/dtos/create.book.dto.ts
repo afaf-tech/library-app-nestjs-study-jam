@@ -6,7 +6,7 @@ import {
   Validate,
   ValidateNested,
 } from 'class-validator';
-import { BookTitleExistRule } from '../validators/book-title-exists.validator';
+import { UniqueBookTitle } from '../validators/book-title-exists.validator';
 
 export class BookDetailDto {
   @IsNotEmpty()
@@ -15,7 +15,7 @@ export class BookDetailDto {
 export class BookDto {
   @IsString()
   @MaxLength(10)
-  @Validate(BookTitleExistRule)
+  @Validate(UniqueBookTitle)
   title: string;
 
   description: string;
@@ -30,9 +30,9 @@ export class BookDto {
   @Expose({ name: 'year_of_publication' })
   yearOfPublication: number;
 
-  @Expose({ name: 'book_detail' })
-  @ValidateNested()
-  @IsNotEmpty()
-  @Type(() => BookDetailDto)
-  bookDetail: BookDetailDto;
+  // @Expose({ name: 'book_detail' })
+  // @ValidateNested()
+  // @IsNotEmpty()
+  // @Type(() => BookDetailDto)
+  // bookDetail: BookDetailDto;
 }

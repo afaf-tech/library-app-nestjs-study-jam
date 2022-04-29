@@ -8,18 +8,18 @@ import {
 import { Repository } from 'typeorm';
 import { BookEntity } from '../entities/book.entity';
 
-@ValidatorConstraint({ name: 'BookTitleExist', async: true })
+@ValidatorConstraint({ name: 'UniqueBookTitle', async: true })
 @Injectable()
-export class BookTitleExistRule implements ValidatorConstraintInterface {
+export class UniqueBookTitle implements ValidatorConstraintInterface {
   constructor(
     @InjectRepository(BookEntity)
     private bookRepository: Repository<BookEntity>,
   ) {}
 
   async validate(value: string) {
-    console.log(value);
-    console.log(this.bookRepository);
     const book = await this.bookRepository.findOne({ where: { title: value } });
+    console.log(book);
+
     if (book) return false;
 
     return true;
