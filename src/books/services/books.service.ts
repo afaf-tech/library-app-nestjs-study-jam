@@ -20,7 +20,7 @@ export class BooksService {
   async getBooks(filterBookDto: FilterBookDto): Promise<BookEntity[]> {
     let filter: FindManyOptions<BookEntity> = {};
     if (filterBookDto.title) {
-      filter = { where: {title: filterBookDto.title} };
+      filter = { where: { title: filterBookDto.title } };
     }
     const books = await this.bookRepository.find(filter);
 
@@ -29,7 +29,7 @@ export class BooksService {
 
   async findOne(id: number): Promise<BookEntity> {
     const book = await this.bookRepository.findOne({
-      where:{id}
+      where: { id },
     });
     if (!book) {
       throw new NotFoundException('book not found');
