@@ -20,6 +20,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 import { ConnectionOptions } from 'typeorm';
 import databaseTestingConfig from './common/config/database-testing.config';
 import { CustomValidationPipe } from './common/pipes/validation-input.pipe';
+import { DevtoolsModule } from '@nestjs/devtools-integration';
 
 @Module({
   imports: [
@@ -47,6 +48,9 @@ import { CustomValidationPipe } from './common/pipes/validation-input.pipe';
     BookLoansModule,
     UsersModule,
     AuthModule,
+    DevtoolsModule.register({
+      http: process.env.NODE_ENV !== 'production',
+    }),
   ],
   controllers: [AppController],
   providers: [
