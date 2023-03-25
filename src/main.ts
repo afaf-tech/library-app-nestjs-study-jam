@@ -6,7 +6,9 @@ import { AppModule } from './app.module';
 import { logger } from './common/middlewares/logger-function.middleware';
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule);
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    snapshot: true,
+  });
   const configService = app.get(ConfigService);
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
   // app.use(logger);
