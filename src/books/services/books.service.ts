@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { FindConditions, Repository } from 'typeorm';
+import { FindManyOptions, Repository } from 'typeorm';
 import { BookEntity } from '../entities/book.entity';
 import { BookDto } from '../dtos/create.book.dto';
 import { FilterBookDto } from '../dtos/filter.book.dto';
@@ -18,9 +18,9 @@ export class BooksService {
   ) {}
 
   async getBooks(filterBookDto: FilterBookDto): Promise<BookEntity[]> {
-    let filter: FindConditions<BookEntity> = {};
+    let filter: FindManyOptions<BookEntity> = {};
     if (filterBookDto.title) {
-      filter = { title: filterBookDto.title };
+      filter = { where: {title: filterBookDto.title} };
     }
     const books = await this.bookRepository.find(filter);
 
@@ -28,7 +28,9 @@ export class BooksService {
   }
 
   async findOne(id: number): Promise<BookEntity> {
-    const book = await this.bookRepository.findOne(id);
+    const book = await this.bookRepository.findOne({
+      where:{id}
+    });
     if (!book) {
       throw new NotFoundException('book not found');
       // throw new HttpException(
